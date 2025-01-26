@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Certificate Level 2 - Computer Systems Servicing</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-container {
+            margin-bottom: 40px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question p {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .answer input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            padding: 12px 30px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .correct-answer {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .incorrect-answer {
+            color: #f44336;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .feedback {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        th, td {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>National Certificate Level 2 - Computer Systems Servicing Reviewer</h1>
+
+        <!-- Choices Table -->
+        <h1>Choices</h1>
+        <table>
+            <tr>
+                <td>Class A</td>
+                <td>Roles</td>
+                <td>Domain Controller</td>
+            </tr>
+            <tr>
+                <td>Class B</td>
+                <td>Features</td>
+                <td>DHCP Lease</td>
+            </tr>
+            <tr>
+                <td>Class C</td>
+                <td>Administrator</td>
+                <td>IP Address</td>
+            </tr>
+            <tr>
+                <td>Class D</td>
+                <td>Active Directory Users and Computers</td>
+                <td>Dynamic IP Address</td>
+            </tr>
+            <tr>
+                <td>Dynamic Host Configuration Protocol</td>
+                <td>Domain</td>
+                <td>Static IP Address</td>
+            </tr>
+            <tr>
+                <td>Windows Server 2012 R2</td>
+                <td>Active Directory Forest</td>
+                <td>Address Reservation</td>
+            </tr>
+            <tr>
+                <td>Active Directory Domain Services</td>
+                <td>Organizational Unit</td>
+                <td>File Services</td>
+            </tr>
+            <tr>
+                <td>Domain Name Services</td>
+                <td>Domain Trees</td>
+                <td>Network Policy and Access Services</td>
+            </tr>
+            <tr>
+                <td>Print Services</td>
+                <td>Group Policy Organization</td>
+                <td></td>
+            </tr>
+        </table>
+
+        <!-- Quiz Form -->
+        <div class="quiz-container">
+            <form id="quizForm" action="https://formspree.io/f/xqaeawky" method="POST" onsubmit="return checkAnswers(event)">
+                
+                <!-- Name and Surname Fields -->
+                <input type="text" name="name" placeholder="First Name" required style="width: 100%; padding: 10px; margin-top: 10px;">
+                <input type="text" name="surname" placeholder="Surname" required style="width: 100%; padding: 10px; margin-top: 10px;">
+
+                <!-- Questions -->
+                <div id="questions-container"></div>
+
+                <!-- Email Field -->
+                <input type="email" name="_replyto" placeholder="Your Email" required style="width: 100%; padding: 10px; margin-top: 10px;">
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+
+            <!-- Feedback Section -->
+            <div id="feedback" class="feedback" style="display: none;">
+                <h3>Results:</h3>
+                <p id="score"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            { q: "These are set of software programs that, when they are installed and properly configured, lets a computer perform a specific function for multiple users or other computers within a network which they describe the primary function, purpose, or use of a computer", correct: "Roles" },
+            { q: "What are software programs that, although they are not directly parts of roles, can support or augment the functionality of one or more roles, or improve the functionality of the server, regardless of which roles are installed, these are called? ", correct: "Features" },
+            { q: "What server roles that stores information about users, computers, and other devices on the network in a security boundary?", correct: "Active Directory Domain Services" },
+            { q: "In what resources and users that are being members of a domain or trusted hierarchy of domains which access to company wide information is secure and no burden on the user? ", correct: "Domain Controller" },
+            { q: "What features that allows servers to assign, lease and manage IP addresses to computers and other devices connected to the network? ", correct: "Dynamic Host Configuration Protocol" },
+            { q: "What server roles that are responsible for phonebook of the Local Domain Network which is responsible for finding the correct IP address for those devices?", correct: "Domain Name Services" },
+            { q: "This service provides technologies for storage management, which includes control of the types of files stored on a server via file screens, permission, quotas, fle replication, and distributed namespace management. ", correct: "File Services" },
+            { q: "Which server features that allow to delivers a variety of protocol to provide users with locai and remote network connectivity, to connect network segments, and to allow network administrators to centrally manage network access and client health policies?", correct: "Network Policy and Access Services" },
+            { q: "This service enables the management of print servers and printers to reduces administrative and management workload by centralizing printer management tasks ", correct: "Print Services" },
+            { q: "It is made up of several domains that share a common schema and configuration, forming a contiguous namespace linked together by trust relationships.", correct: "Domain Trees" },
+            { q: "It is considered to be the top most logical container in an Active Directory configuration that contains domains, users, computers, and group policies.", correct: "Active Directory Forest"},
+            { q: "It is defined as a logical group of network objects (computers, users, devices) that share the same Active Directory database.", correct: "Domain"},
+            { q: "What do you call the subdivision within an Active Directory into which you can place users. groups, computers, and other functionals or business structures?", correct: "Organizational Unit"},
+            { q: "What do you call the 32-bit number that signifies te address of both the sender and receiver of packets on a network?", correct: "IP Address"},
+            { q: "What IP Address Classes that Reserved for Multicast Groups?", correct: "Class D"},
+            { q: "What IP Address Classes that supports small network with up to 256 devices?", correct: "Class C"},
+            { q: "What IP Address Classes that supports medium sized network?", correct: "Class B"},
+            { q: "What IP Address Classes that supports large networks with many devices?", correct: "Class A"},
+            { q: "What type of IP Addressing system that allows the network administrator to set its own IP Address to specific device needed to connect to the network? This is done by 1:1 process.", correct: "Static IP Address"},
+            { q: "Which type of IP Addressing system that has great security feature to avoidoutsider (hacker) to gain access to your network?", correct: "Dynamic IP Address"},
+            { q: "When a dynamic IP Address assigned to the specific device, it has a limited time which needs to be renewed periodically. The DHCP can be configured how much time when the given IP Address will expire and need to renew.", correct: "DHCP Lease"},
+            { q: "What type of IP Addressing system that allows the network administrator to define the DHCP to assign a specific IP Address to the specific device needed to connect to the network which doesn't have to rely on lP leasing system.", correct: "Address Reservation"},
+            { q: "Which user account that has great control over the server resources and ability to set a permission and policy over other users and computers?", correct: "Administrator"},
+            { q: "Which administrative tool feature that allows network administrators to define and enforce specific settings, configurations, and security policies for users and machines within a Windows-based network?", correct: "Group Policy Organization"},
+            { q: "A server operating system (server 05) runs on a server in a client-server architecture and provides multiple services to client machines within the network. It forms the software backbone to run various programs and applications.", correct: "Windows Server 2012 R2"},
+            ];
+
+        const questionsContainer = document.getElementById("questions-container");
+
+        // Dynamically generate the questions and answer fields
+        questions.forEach((question, index) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("question");
+            questionDiv.innerHTML = `
+                <p>${index + 1}. ${question.q}</p>
+                <div class="answer">
+                    <input type="text" name="q${index}" id="q${index}" placeholder="Type your answer here" required>
+                    <div class="feedback" id="feedback-${index}" style="display: none;"></div>
+                </div>
+            `;
+            questionsContainer.appendChild(questionDiv);
+        });
+
+        // Function to check answers and display the feedback
+        function checkAnswers(event) {
+            event.preventDefault();  // Prevent the form from submitting immediately
+            
+            let correctAnswers = 0;
+
+            // Loop through each question and check the answer
+            questions.forEach((question, index) => {
+                const userAnswer = document.getElementById(`q${index}`).value.trim().toLowerCase();
+                const correctAnswer = question.correct.toLowerCase();
+
+                // Initially hide the feedback
+                const feedbackElement = document.getElementById(`feedback-${index}`);
+                feedbackElement.style.display = 'none';
+
+                // Store the feedback and score for later display
+                if (userAnswer === correctAnswer) {
+                    correctAnswers++;
+                    feedbackElement.innerHTML = `<span class="correct-answer">Correct Answer: ${question.correct}</span>`;
+                } else {
+                    feedbackElement.innerHTML = `<span class="incorrect-answer">Incorrect. Correct Answer: ${question.correct}</span>`;
+                }
+
+                // Show the feedback after checking the answer
+                feedbackElement.style.display = 'block';
+            });
+
+            // Make the score visible after submitting
+            const scoreElement = document.getElementById("score");
+            scoreElement.innerHTML = `You got ${correctAnswers} out of ${questions.length} correct!`;
+
+            // Show the feedback section
+            document.getElementById("feedback").style.display = 'block';
+
+            // Submit the form to Formspree
+            const form = document.getElementById('quizForm');
+            const formData = new FormData(form);
+            formData.append('score', correctAnswers);  // Add the score to the submission
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    alert('Your answers have been submitted successfully.');
+                } else {
+                    alert('There was an error submitting your form.');
+                }
+            }).catch(err => {
+                alert('There was an error submitting your form.');
+            });
+        }
+    </script>
+
+</body>
+</html>
